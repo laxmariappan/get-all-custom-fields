@@ -16,3 +16,40 @@
  *
  * @package get-all-custom-fields
  */
+
+ namespace Lax\GetAllCustomFields;
+
+/**
+ * Get the list of all custom fields.
+ *
+ * @return void
+ * @since  1.0.0
+ * @author Lax Mariappan <lax@webdevstudios.com>
+ */
+
+class GACF_EbtechModules {
+    public static function init() {
+        add_action( 'admin_menu', array( __CLASS__, 'adminMenu' ) );
+    }
+
+    public static function adminMenu() {
+        add_menu_page(
+            __( 'All Custom Fields', 'get-all-custom-fields' ),
+            __( 'All Custom Fields', 'get-all-custom-fields' ),
+            'manage_options',
+            'get-all-custom-fields',
+            array( __CLASS__, 'listFieldsPage' ),
+            'dashicons-tagcloud',
+            6
+        );
+    }
+
+    public static function listFieldsPage() {
+        if ( is_file( plugin_dir_path( __FILE__ ) . 'includes/fields.php' ) ) {
+            include_once plugin_dir_path( __FILE__ ) . 'includes/fields.php';
+        }
+    }
+
+}
+
+GACF_EbtechModules::init();
