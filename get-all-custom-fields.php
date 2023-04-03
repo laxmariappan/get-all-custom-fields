@@ -17,7 +17,9 @@
  * @package get-all-custom-fields
  */
 
- namespace Lax\GetAllCustomFields;
+namespace Lax\GetAllCustomFields;
+
+require_once dirname(__FILE__) . '/includes/helpers.php';
 
 /**
  * Get the list of all custom fields.
@@ -27,7 +29,7 @@
  * @author Lax Mariappan <lax@webdevstudios.com>
  */
 
-class GACF_EbtechModules {
+class GACF {
     public static function init() {
         add_action( 'admin_menu', array( __CLASS__, 'adminMenu' ) );
     }
@@ -52,4 +54,4 @@ class GACF_EbtechModules {
 
 }
 
-GACF_EbtechModules::init();
+GACF::init();
